@@ -12,11 +12,9 @@ export default function HomeScreen() {
     </Text>
     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <TinderCards />
-    <Link href="/upload" style={styles.link}> {/* Temporary solution */}
     <TouchableOpacity style={styles.stickyButton}>
       <Text style={styles.buttonText}>+</Text>
     </TouchableOpacity>
-    </Link>
   </View>
   );
 }
