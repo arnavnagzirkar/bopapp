@@ -1,74 +1,66 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View } from '@/components/Themed';
+import { Link } from 'expo-router';
+import TinderCards from '@/components/TinderCards';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>
+      <Text style={{color: "#97E16B"}}>Journey</Text>
+      Match
+    </Text>
+    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <TinderCards />
+    <Link href="/upload" style={styles.link}> {/* Temporary solution */}
+    <TouchableOpacity style={styles.stickyButton}>
+      <Text style={styles.buttonText}>+</Text>
+    </TouchableOpacity>
+    </Link>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  title: {
+    fontSize: 48,
+    fontWeight: 'bold',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  separator: {
+    alignSelf: 'center',
+    marginVertical: 30,
+    height: 1,
+    width: '80%',
+  },
+  stickyButton: {
     position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#97E16B',
+    padding: 10,
+    borderRadius: "50%",
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    height: 80,
+    width: 80,
+    verticalAlign: 'middle',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 50,
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    marginBottom:"25%",
+  },
+  link: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
   },
 });
